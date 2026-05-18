@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RT100 다목적 운반로봇 기술 설명서</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body { font-family: 'Pretendard', sans-serif; background-color: #f8fafc; }
+        .mobile-container { max-width: 480px; margin: 0 auto; background-color: #ffffff; min-height: 100vh; position: relative; padding-bottom: 32px; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body class="antialiased text-slate-800">
+
+<div class="mobile-container">
+    
+    <!-- Header / Technical Title Section -->
+    <header class="bg-gradient-to-r from-slate-800 to-slate-900 text-white p-6 rounded-b-3xl shadow-lg">
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold tracking-wider text-blue-400 uppercase bg-blue-950 px-2.5 py-1 rounded-full">내부 검토용 기술자료</span>
+            <span class="text-xs text-slate-400 font-medium">한국철도공사</span>
+        </div>
+        <h1 class="text-2xl font-black mb-1 leading-tight tracking-tight">RT100 다목적 전기 운반로봇</h1>
+        <p class="text-sm font-medium text-slate-300">자율주행 및 수동 정밀 제어 복합 시스템 기술 사양</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="px-5 py-6 space-y-8">
+
+        <!-- Section 1: Equipment Overview -->
+        <section>
+            <h2 class="text-lg font-bold mb-3 flex items-center text-slate-900">
+                <i class="fa-solid fa-circle-info text-blue-600 mr-2"></i>장비 개요 및 구분
+            </h2>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                RT100 시리즈는 고하중 화물 운반 및 시설물 관리를 위해 개발된 100% 전기 동력원 기반의 자율·수동 겸용 스마트 플랫폼입니다. 운행 제어 사양에 따라 시스템 인터페이스가 구분됩니다.
+            </p>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl">
+                    <div class="text-xs font-bold text-blue-600 mb-1">TA (Full Specs)</div>
+                    <span class="block text-xl font-black text-slate-800 mb-1">자율 + 수동주행</span>
+                    <span class="text-xs text-slate-500 leading-relaxed block">지능형 경로 생성, 비전 센서 기반 능동 장애물 회피 시스템 탑재</span>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl">
+                    <div class="text-xs font-bold text-slate-600 mb-1">TS / TR</div>
+                    <span class="block text-xl font-black text-slate-800 mb-1">수동제어 전용</span>
+                    <span class="text-xs text-slate-500 leading-relaxed block">RF 무선 원격 제어 및 하드웨어 와이어 연동 직접 주행 제어 지원</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Autonomous System (TA Limited) -->
+        <section class="bg-blue-50/50 border border-blue-100 p-5 rounded-2xl">
+            <h2 class="text-lg font-bold mb-1 text-slate-900 flex items-center">
+                <i class="fa-solid fa-robot text-blue-600 mr-2"></i>자율주행 제어 시스템 (TA 사양 한정)
+            </h2>
+            <span class="text-xs font-medium text-blue-600 block mb-3">AI Vision & LiDAR Navigation</span>
+            
+            <div class="space-y-4">
+                <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-sm">
+                    <h3 class="font-bold text-sm text-slate-800 mb-1.5 flex items-center">
+                        <i class="fa-solid fa-map-location-dot text-blue-500 mr-1.5"></i>스마트 공간 맵핑 및 멀티 노드 지정
+                    </h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        전용 무선 어플리케이션 인터페이스를 활용하여 최초 1회 수동 궤적 주행 시 운행 경로 데이터가 자동 생성 및 저장(Mapping)됩니다. 
+                        단일 마스터 단말기 기준 <strong>최대 10개 작업 영역</strong> 관리가 가능하며, 각 영역별 <strong>최대 50개 지정 정차점(Point)</strong>을 매핑하여 원격 명령 수행이 가능합니다.
+                    </p>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-sm">
+                    <h3 class="font-bold text-sm text-slate-800 mb-1.5 flex items-center">
+                        <i class="fa-solid fa-shield-halved text-emerald-500 mr-1.5"></i>이중 센서 융합형 능동 안전장치
+                    </h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        전방 장착형 고정밀 <strong>라이다(LiDAR) 센서</strong>와 <strong>비전 카메라 센서</strong>의 다중 센서 데이터 퓨전 알고리즘을 사용합니다. 주행 경로 내 동적/정적 장애물을 실시간 감지하여 긴급 비상 제동 및 능동 정지 동작을 수행합니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Manual Drive Control -->
+        <section class="space-y-4">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center">
+                <i class="fa-solid fa-gears text-slate-600 mr-2"></i>수동 주행 및 원격 조작 시스템
+            </h2>
+            
+            <!-- TFS Wire Control -->
+            <div class="bg-slate-800 text-white p-5 rounded-2xl shadow-sm">
+                <h3 class="font-bold text-sm mb-2 flex items-center">
+                    <i class="fa-solid fa-code-fork text-yellow-400 mr-1.5"></i>TFS(Tether Following Sensor) 와이어 연동 제어
+                </h3>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                    플랫폼 전면에 장착된 와이어 센서를 조작하여 무선 통신 음영 지역에서도 정밀한 직관 제어가 가능합니다. 와이어 인장력 및 변위 각도를 연산하여 차량의 속도와 조향각을 제어합니다.
+                </p>
+                
+                <div class="grid grid-cols-3 gap-2 text-center text-[11px] font-medium">
+                    <div class="bg-slate-700/60 p-2.5 rounded-xl border border-slate-600">
+                        <span class="block text-emerald-400 font-bold mb-1">전진 주행 (Pull)</span>
+                        인장 변위 증가 시 속도 가속 (동조 지연 최소화)
+                    </div>
+                    <div class="bg-slate-700/60 p-2.5 rounded-xl border border-slate-600">
+                        <span class="block text-rose-400 font-bold mb-1">후진 주행 (Push)</span>
+                        안전 한계 거리 접근 시 가속 제어
+                    </div>
+                    <div class="bg-slate-700/60 p-2.5 rounded-xl border border-slate-600">
+                        <span class="block text-sky-400 font-bold mb-1">제자리 선회 (Zero-Turn)</span>
+                        최소 점유 반경 3.2㎡ 내 360° 제자리 회전
+                    </div>
+                </div>
+            </div>
+
+            <!-- RF Remote Controller -->
+            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-start gap-3">
+                <div class="bg-slate-100 p-2 rounded-lg text-slate-600">
+                    <i class="fa-solid fa-signal text-lg"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm text-slate-800 mb-1">RF 방식 산업용 리모컨 제어</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        산업 표준 고주파 대역 무선 리모컨이 기본 사양으로 포함되어 있습니다. 송수신 모듈 간 감도가 확보된 운용 환경 기준, <strong>최대 통신 반경 80m</strong> 범위 이내에서 기동 제어가 가능합니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Mechanical & Electrical Specifications -->
+        <section class="space-y-4">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center">
+                <i class="fa-solid fa-bolt text-amber-500 mr-2"></i>동력 및 기계 장치 메커니즘
+            </h2>
+
+            <!-- Payload & Lift/Dump -->
+            <div class="grid grid-cols-2 gap-3 text-center">
+                <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                    <span class="block text-xs font-semibold text-slate-500 mb-1">최대 적재 중량</span>
+                    <span class="block text-2xl font-black text-slate-800">300 kg</span>
+                    <span class="text-[11px] text-slate-400 mt-1 block">정하중 기준 설계 설계 한계치</span>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                    <span class="block text-xs font-semibold text-slate-500 mb-1">덤프 복합 액추에이터</span>
+                    <span class="block text-2xl font-black text-slate-800">40.3° / 520 mm</span>
+                    <span class="text-[11px] text-slate-400 mt-1 block">최대 경사각 및 수직 리프트 높이</span>
+                </div>
+            </div>
+
+            <!-- Powertrain -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 class="font-bold text-sm text-slate-800 pb-2 border-b border-slate-100 flex items-center">
+                    <i class="fa-solid fa-car-battery text-blue-500 mr-1.5"></i>전기 동력 장치 및 고성능 전력 제어
+                </h3>
+                
+                <div class="space-y-3 text-xs leading-relaxed text-slate-600">
+                    <div class="flex items-start">
+                        <span class="font-semibold text-slate-800 w-24 shrink-0">• 친환경 드라이브</span>
+                        <p>100% 전기 에너지 기동 방식으로 탄소 배출량이 없으며 실내 역사 및 지하 통로 등 밀폐 공간 배출가스 검토 기준을 충족합니다.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="font-semibold text-slate-800 w-24 shrink-0">• 모터 제어 성능</span>
+                        <p>소음 수치 60~70 dB 이내의 저소음 기동 설계를 채택하였으며, 독립 구동 방식의 800W 모터 4기가 장착되어 4축 고토크 구동을 수행합니다.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="font-semibold text-slate-800 w-24 shrink-0">• 고효율 배터리</span>
+                        <p>스왑 방식(Quick-Exchange) 탈부착 구조의 리튬 이온 48V 30Ah 배터리 팩 2개가 기본 장착됩니다. 충전 시간은 약 3시간 50분이며 가혹 조건 시 연속 4시간 이상 안정적인 운행 성능을 확보하였습니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deck Options -->
+            <div class="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
+                <h3 class="font-bold text-sm text-slate-800 mb-3"><i class="fa-solid fa-cubes text-slate-500 mr-1.5"></i>다목적 데크 옵션 사양</h3>
+                <div class="space-y-3 text-xs">
+                    <div class="bg-white p-3 rounded-lg border border-slate-200">
+                        <span class="inline-block bg-slate-200 text-slate-800 text-[10px] px-2 py-0.5 rounded font-bold mb-1">A형: 트럭 데크 사양</span>
+                        <p class="text-slate-500">측면 및 후면 가드 테일게이트 구조로 범용 유지보수 자재 및 안정적인 수송에 최적화</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg border border-slate-200">
+                        <span class="inline-block bg-slate-200 text-slate-800 text-[10px] px-2 py-0.5 rounded font-bold mb-1">B형: 오픈 플랫 데크 사양</span>
+                        <p class="text-slate-500">개방형 평면 구조로 벌크 화물 또는 역사 내 다단 박스 규격물 적재 작업에 적합</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Consolidated Technical Specifications -->
+        <section>
+            <h2 class="text-lg font-bold mb-3 flex items-center text-slate-900">
+                <i class="fa-solid fa-list-check text-slate-600 mr-2"></i>공통 기계 상세 제원 (TA, TS 공용)
+            </h2>
+            
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden text-xs">
+                
+                <!-- Dimensions -->
+                <div class="bg-slate-100 font-bold text-slate-700 px-4 py-2 border-b border-slate-200">기계 구조 및 중량</div>
+                <dl class="divide-y divide-slate-100">
+                    <div class="px-4 py-3 flex justify-between">
+                        <dt class="text-slate-500 font-medium">물리 치수 (W×L×H)</dt>
+                        <dd class="text-slate-900 text-right">
+                            <span class="block font-medium">트럭형: 1,645 × 1,226 × 1,150 mm</span>
+                            <span class="block text-slate-400">오픈형: 1,685 × 1,250 × 1,150 mm</span>
+                        </dd>
+                    </div>
+                    <div class="px-4 py-3 flex justify-between">
+                        <dt class="text-slate-500 font-medium">적재 공간 치수</dt>
+                        <dd class="text-slate-900 text-right">
+                            <span class="block font-medium">트럭형: 1,127 × 910 × 290 mm</span>
+                            <span class="block text-slate-400">오픈형: 1,150 × 1,163 × 100 mm</span>
+                        </dd>
+                    </div>
+                    <div class="px-4 py-3 flex justify-between">
+                        <dt class="text-slate-500 font-medium">축간거리 (휠베이스)</dt>
+                        <dd class="text-slate-900 font-semibold">850 mm</dd>
+                    </div>
+                    <div class="px-4 py-3 flex justify-between">
+                        <dt class="text-slate-500 font-medium">공차 중량</dt>
+                        <dd class="text-slate-900 font-semibold">380 kg</dd>
+                    </div>
+                </dl>
+
+                <!-- Actuator Specifications -->
+                <div class="bg-slate-100 font-bold text-slate-700 px-4 py-2 border-y border-slate-200">구동 및 현가 장치</div>
+                <dl class="divide-y divide-slate-100">
+                    <div class="px-4 py-3 flex justify-between">
+                        <dt class="text-slate-500 font-medium">작업대 리프트 가변 행정</dt>
+                        <dd class="text-slate-900 font-semibold">520 mm</dd>
+                    </div>
+                    <div class="px-4 py-3 flex justify-between">
+                        <dt class="text-slate-500 font-medium">최대 실린더 덤프 각도</dt>
+                        <dd class="text-slate-900 font-semibold">40.3°</dd>
+                    </div>
+                    <div class="px-4 py-3 flex justify-between">
+                        <dt class="text-slate-500 font-medium">전후륜 타이어 규격</dt>
+                        <dd class="text-slate-900 font-semibold">외경 435 / 폭 200 (mm)</dd>
+                    </div>
+                    <div class="px-4 py-3 flex justify-between">
+                        <dt class="text-slate-500 font-medium">트레드 패턴 구분</dt>
+                        <dd class="text-slate-900 text-right">
+                            <span class="block font-medium">하이브리드형 (기본 사양)</span>
+                            <span class="block text-slate-400">옵션: 잔디용 패턴 / 산업용 패턴</span>
+                        </dd>
+                    </div>
+                </dl>
+
+                <!-- Power System -->
+                <div class="bg-slate-100 font-bold text-slate-700 px-4 py-2 border-y border-slate-200">전동 및 제동 제원</div>
+                <dl class="divide-y divide-slate-100">
+                    <div class="px-4 py-3 flex justify-between">
+                        <dt class="text-slate-500 font-medium">모터 정격 출력</dt>
+                        <dd class="text-slate-900 font-semibold text-right">800W 인휠/독립모터 × 4기</dd>
+                    </div>
+                    <div class="px-4 py-3 flex justify-between">
+                        <dt class="text-slate-500 font-medium">전력 공급 전압</dt>
+                        <dd class="text-slate-900 font-semibold">DC 48V (Dual Pack 구성)</dd>
+                    </div>
+                    <div class="px-4 py-3 flex justify-between">
+                        <dt class="text-slate-500 font-medium">단위 배터리 팩 용량</dt>
+                        <dd class="text-slate-900 font-semibold">30Ah 배터리 팩 × 2ea</dd>
+                    </div>
+                    <div class="px-4 py-3 flex justify-between">
+                        <dt class="text-slate-500 font-medium">최고 운행 속도</dt>
+                        <dd class="text-slate-900 text-right">
+                            <span class="block font-medium">산업 및 유지보수용: 8 km/h</span>
+                            <span class="block text-slate-400">범용 제어 사양: 6 km/h</span>
+                        </dd>
+                    </div>
+                    <div class="px-4 py-3 flex justify-between">
+                        <dt class="text-slate-500 font-medium">등판 제어 한계</dt>
+                        <dd class="text-slate-900 font-semibold">30% (경사도 기준 약 16.7°)</dd>
+                    </div>
+                    <div class="px-4 py-3 flex justify-between">
+                        <dt class="text-slate-500 font-medium">안전 제동 장치</dt>
+                        <dd class="text-slate-900 text-right">전자 제어식 기계 브레이크 (EMB)</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <!-- Section 6: Inquiries & Internal Contact (Newly Added) -->
+        <section class="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
+            <h2 class="text-sm font-bold text-slate-900 mb-3 flex items-center">
+                <i class="fa-solid fa-headset text-blue-600 mr-2"></i>도입 및 검토 협의 문의
+            </h2>
+            <div class="bg-white p-4 rounded-xl border border-slate-200/60 shadow-sm flex flex-col gap-3">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold text-slate-500">담당 부서</span>
+                    <span class="text-sm font-bold text-slate-800">AI전략본부 AX기획처</span>
+                </div>
+                <div class="h-[1px] bg-slate-100"></div>
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold text-slate-500">원내 전화(철도)</span>
+                    <a href="tel:900-4312" class="text-base font-black text-blue-600 hover:text-blue-700 transition flex items-center gap-1">
+                        <i class="fa-solid fa-phone-flip text-xs"></i> 900-4312
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer for internal document -->
+    <footer class="mt-4 border-t border-slate-200 pt-5 px-5 text-center">
+        <div class="text-[10px] text-slate-400 tracking-wider font-semibold uppercase">TECHNICAL DATA FOR INTERNAL USE ONLY</div>
+        <p class="text-[10px] text-slate-400 mt-1">본 문서는 기계 검토 목적의 사양 안내서이며, 세부 설계 사양은 기술 부서 및 실증 기지의 운용 환경 설계에 따라 조율될 수 있습니다.</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
